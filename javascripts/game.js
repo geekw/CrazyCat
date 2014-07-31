@@ -5,6 +5,7 @@ createjs.Ticker.addEventListener("tick", stage);
 var gameView = new createjs.Container();
 stage.addChild(gameView);
 
+var clickCounter = 0;
 var circleArr = [[], [], [], [], [], [], [], [], []];
 var currentCat;
 var MOVE_NONE = -1, MOVE_LEFT = 0, MOVE_UP_LEFT = 1, MOVE_UP_RIGHT = 2, 
@@ -144,6 +145,7 @@ function getMoveDir(cat){
 
 function circleClicked(event){
 	if (event.target.getCircleType() == Circle.TYPE_UNSELECTED) {
+		clickCounter++;
 		event.target.setCircleType(Circle.TYPE_SELECTED);
 	} else {
 		return;
@@ -183,7 +185,7 @@ function circleClicked(event){
 			currentCat = circleArr[currentCat.indexX+(currentCat.indexY%2?0:-1)][currentCat.indexY+1];			
 			break;
 		default:
-			endThisRound("You win!");
+			endThisRound("You win in " + clickCounter + " steps!");
 			break;
 	}
 
