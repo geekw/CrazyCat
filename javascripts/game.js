@@ -1,5 +1,5 @@
 var stage = new createjs.Stage("gameView");
-createjs.Ticker.setFPS(15);
+createjs.Ticker.setFPS(30);
 createjs.Ticker.addEventListener("tick", stage);
 
 var gameView = new createjs.Container();
@@ -12,10 +12,12 @@ var MOVE_NONE = -1, MOVE_LEFT = 0, MOVE_UP_LEFT = 1, MOVE_UP_RIGHT = 2,
     MOVE_RIGHT = 3, MOVE_DOWN_RIGHT = 4, MOVE_DOWN_LEFT = 5;
 
 function endThisRound(msg){
-	var r = window.confirm(msg + " Do you want to play again?");
-	if (r){
-		addCircles();
-	} 
+	setTimeout(function(){	
+		var r = window.confirm(msg + " Do you want to play again?");
+		if (r){
+			addCircles();
+		}
+	}, 50);
 }
 
 function getMoveDir(cat){
